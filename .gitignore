@@ -1,2 +1,29 @@
-*
-!.tf
+# Local Terraform directories and files
+.terraform/
+.terraform.lock.hcl
+
+# Crash log files
+crash.log
+
+# Exclude tfstate files (local state)
+*.tfstate
+*.tfstate.*
+
+# Exclude override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Exclude variable files containing secrets
+*.tfvars
+*.tfvars.json
+
+# Exclude plan output
+*.tfplan
+plan
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/

@@ -1,18 +1,18 @@
 resource "github_repository" "github_course_repo" {
-  name = "terraform-course"
+  name        = "terraform-course"
   description = "Terraform course repository"
-  visibility = "public"
+  visibility  = "public"
 }
 
 resource "github_branch" "github_course_repo_main_branch" {
   repository = github_repository.github_course_repo.id
-  branch = "main"
-  
+  branch     = "main"
+
 }
 
 resource "github_branch_default" "github_course_repo_default_branch" {
   repository = github_repository.github_course_repo.id
-  branch = github_branch.github_course_repo_main_branch.branch
+  branch     = github_branch.github_course_repo_main_branch.branch
 }
 
 resource "github_repository_ruleset" "github_course_repo_main_ruleset" {
@@ -23,7 +23,7 @@ resource "github_repository_ruleset" "github_course_repo_main_ruleset" {
 
   conditions {
     ref_name {
-      include = [ "~DEFAULT_BRANCH" ]
+      include = ["~DEFAULT_BRANCH"]
       exclude = []
     }
   }
@@ -31,6 +31,10 @@ resource "github_repository_ruleset" "github_course_repo_main_ruleset" {
   rules {
     deletion                = true
     required_linear_history = true
-    non_fast_forward = true
+    non_fast_forward        = true
   }
+}
+
+output "repository_url" {
+  value = github_repository.github_course_repo.ssh_clone_url
 }
